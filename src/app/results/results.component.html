@@ -1,0 +1,64 @@
+<div *ngIf="results.length === 0 || isLoading || errorMessage; else imageGrid">
+  <div 
+    class="flex justify-center text-center 
+          p-8 bg-white rounded-3xl shadow-xl 
+          border border-gray-200 mt-8">
+    <ng-container *ngIf="isLoading; else content">
+      <div>
+        <div class="animate-spin rounded-full h-6 w-6 
+                    border-t-2 border-b-2 border-gray-500"></div>
+      </div>
+    </ng-container>
+    <ng-template #content>
+      <ng-container *ngIf="errorMessage; else noImages">
+        <div class="text-sm text-red-500">
+          {{ errorMessage }}
+        </div>
+      </ng-container>
+      <ng-template #noImages>
+        <div *ngIf="results.length === 0" class="text-sm">
+          No images available.
+        </div>
+      </ng-template>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #imageGrid>
+  <div class="grid grid-cols-2 md:grid-cols-3 
+              lg:grid-cols-4 gap-6 p-8 bg-white 
+              rounded-3xl shadow-xl border 
+              border-gray-200 mt-8">
+    <img
+      *ngFor="let image of results"
+      [src]="image.url"
+      [alt]="'Image'"
+      class="w-full h-48 object-cover rounded-xl 
+            shadow-md hover:scale-105 hover:shadow-lg 
+            transition-transform duration-300"
+    />
+  </div>
+</ng-template>
+
+<div class="pagination-controls flex justify-center mt-4">
+  <button 
+    (click)="previousPage()" 
+    [disabled]="currentPage <= 1" 
+    [ngClass]="{ 
+      'cursor-not-allowed': currentPage <= 1, 
+      'cursor-pointer': currentPage > 1 }" 
+    class="btn-pagination">
+    Previous
+  </button>
+  <span class="page-number mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
+  <button 
+    (click)="nextPage()" 
+    [disabled]="currentPage >= totalPages" 
+    [ngClass]="{ 
+      'cursor-not-allowed': currentPage >= totalPages, 
+      'cursor-pointer': currentPage < totalPages }" 
+    class="btn-pagination">
+    Next
+  </button>
+</div>
+
