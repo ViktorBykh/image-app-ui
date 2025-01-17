@@ -4,15 +4,14 @@
 
 The **Image App UI** is an Angular-based web application that interacts with the Image App API to provide an intuitive user interface for uploading, searching, and displaying images stored in AWS S3. It consists of three main components: **Upload**, **Search**, and **Results**.
 
----
+## [UI LINK](https://viktorbykh.github.io/image-app-ui/)
+The UI includes options to upload images, navigate through pages, and image recognition.
 
 ## Features
 
 - **Upload Images**: Allows users to upload images to the S3 bucket via the API.
 - **Search Images**: Enables users to search for images using keywords powered by AWS Rekognition.
 - **View Results**: Displays the uploaded or searched images in a responsive layout.
-
----
 
 ## Tech
 
